@@ -1,0 +1,9 @@
+django==2.2.8
+kafka-python
+kafka
+apscheduler
+django-apscheduler
+ares
+requests
+osquery
+pymysql

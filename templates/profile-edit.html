@@ -1,0 +1,288 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="Mosaddek">
+    <meta name="keyword" content="FlatLab, Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
+    <link rel="shortcut icon" href="{% static 'img/favicon.html' %}">
+
+    <title>编辑设置</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/bootstrap-reset.css' %}" rel="stylesheet">
+    <!--external css-->
+    <link href="{% static 'assets/font-awesome/css/font-awesome.css' %}" rel="stylesheet" />
+    <!-- Custom styles for this template -->
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+    <link href="{% static 'css/style-responsive.css' %}" rel="stylesheet" />
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 tooltipss and media queries -->
+    <!--[if lt IE 9]>
+      <script src="js/html5shiv.js"></script>
+      <script src="js/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+  <section id="container" class="">
+      <!--header start-->
+      <header class="header white-bg">
+          <div class="sidebar-toggle-box">
+              <div data-original-title="Toggle Navigation" data-placement="right" class="icon-reorder tooltips"></div>
+          </div>
+          <!--logo start-->
+          <a href="#" class="logo" >zeru<span>lab</span></a>
+          <!--logo end-->
+          <div class="nav notify-row" id="top_menu">
+		  <ul class="nav top-menu">
+		  <li class="dropdown">
+		  <button type="button" class="btn btn-round btn-success" id="begin_btn">启动</button>
+		  <button type="button" class="btn btn-round btn-danger" id="end_btn">关闭</button>
+		  </li>
+		  </ul>
+		  </div>
+          <div class="top-nav ">
+              <ul class="nav pull-right top-menu">
+                  <li>
+                      <input type="text" class="form-control search" placeholder="Search">
+                  </li>
+                  <!-- user login dropdown start-->
+                  <li class="dropdown">
+                      <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                          <img alt="" src="{% static 'img/avatar1_small.jpg' %}">
+                          <span class="username">{{ request.user }}</span>
+                          <b class="caret"></b>
+                      </a>
+                      <ul class="dropdown-menu extended logout">
+                          <div class="log-arrow-up"></div>
+                          <li><a href="{% url 'logout' %}"><i class="icon-key"></i> Log Out</a></li>
+                      </ul>
+                  </li>
+                  <!-- user login dropdown end -->
+              </ul>
+          </div>
+      </header>
+      <!--header end-->
+      <!--sidebar start-->
+      <aside>
+          <div id="sidebar"  class="nav-collapse ">
+              <!-- sidebar menu start-->
+              <ul class="sidebar-menu">
+                  <li class="">
+                      <a class="" href="{% url 'index' %}">
+                          <i class="icon-dashboard"></i>
+                          <span>Dashboard</span>
+                      </a>
+                  </li>
+				  <li class="sub-menu">
+                      <a class="" href="{% url 'monitor' %}">
+                          <i class="icon-desktop"></i>
+                          <span>文件监控</span>
+                      </a>
+                  </li>
+                  <li class="sub-menu">
+                      <a href="javascript:;" class="">
+                          <i class="icon-tasks"></i>
+                          <span>系统信息</span>
+                          <span class="arrow"></span>
+                      </a>
+                      <ul class="sub">
+                          <li><a class="" href="{% url 'system' %}">主机信息</a></li>
+                          <li><a class="" href="{% url 'version' %}">内核信息</a></li>
+                          <li><a class="" href="{% url 'memory' %}">内存信息</a></li>
+						  <li><a class="" href="{% url 'user' %}">主机用户</a></li>
+						  <li><a class="" href="{% url 'processes' %}">主机进程</a></li>
+						  <li><a class="" href="{% url 'crontab' %}">计划任务</a></li>
+						  <li><a class="" href="{% url 'hidden' %}">隐藏文件</a></li>
+						  <li><a class="" href="{% url 'shell' %}">终端连接</a></li>
+						  <li><a class="" href="{% url 'port' %}">端口开放</a></li>
+                          <li><a class="" href="{% url 'bean' %}">反弹shell</a></li>
+                      </ul>
+                  </li>
+                  <li class="sub-menu">
+                      <a class="" href="{% url 'cve' %}">
+                          <i class="icon-cogs"></i>
+                          <span>CVE监控</span>
+                      </a>
+                  </li>
+                  <li>
+                      <a class="" href="{% url 'inbox' %}">
+                          <i class="icon-envelope"></i>
+                          <span>新消息 </span>
+                          <span class="label label-danger pull-right mail-info">{{ mesnum }}</span>
+                      </a>
+                  </li>
+                  <li class="sub-menu">
+                      <a href="javascript:;" class="">
+                          <i class="icon-th"></i>
+                          <span>系统设置</span>
+                          <span class="arrow"></span>
+                      </a>
+                      <ul class="sub">
+                          <li><a class="" href="{% url 'host' %}">配置设置</a></li>
+                          <li><a class="" href="{% url 'profile' %}">个人设置</a></li>
+                      </ul>
+                  </li>
+              </ul>
+              <!-- sidebar menu end-->
+          </div>
+      </aside>
+      <!--sidebar end-->
+      <!--main content start-->
+      <section id="main-content">
+          <section class="wrapper">
+              <!-- page start-->
+              <div class="row">
+                  <aside class="profile-nav col-lg-3">
+                      <section class="panel">
+                          <div class="user-heading round">
+                              <a href="#">
+                                  <img src="{% static 'img/profile-avatar.jpg' %}" alt="">
+                              </a>
+                              <h1>{{ request.user }}</h1>
+                              <p>{{ request.user.email }}</p>
+                          </div>
+
+                          <ul class="nav nav-pills nav-stacked">
+                              <li><a href="{% url 'profile' %}"> <i class="icon-user"></i> 个人设置</a></li>
+                              <li  class="active"><a href="{% url 'edit' %}"> <i class="icon-edit"></i>编辑设置</a></li>
+                          </ul>
+
+                      </section>
+                  </aside>
+                  <aside class="profile-info col-lg-9">
+                      <section class="panel">
+                          <div class="bio-graph-heading">
+                              管理界面.
+                          </div>
+                          <div class="panel-body bio-graph-info">
+                              <h1>设置信息</h1>
+							  {% if message %}
+							  <div class="alert alert-success alert-block fade in">
+                                  <button data-dismiss="alert" class="close close-sm" type="button">
+                                      <i class="icon-remove"></i>
+                                  </button>
+                                  <h4>
+                                      <i class="icon-ok-sign"></i>
+                                      Success!
+                                  </h4>
+                                  <p>{{ message }}</p>
+                              </div>
+							  {% endif %}
+                              <form class="form-horizontal" role="form" action="{% url 'edit' %}" method="POST">
+                                  {% csrf_token %}
+                                  <div class="form-group">
+                                      <label  class="col-lg-2 control-label">Kafka 地址</label>
+                                      <div class="col-lg-10">
+                                          <textarea name="kafka" id="" class="form-control" cols="10" rows="5"></textarea>
+										<span class="help-block">多地址时，一行一个，全用户通用</span>
+                                      </div>
+                                  </div>
+								  <div class="form-group">
+                                      <label  class="col-lg-2 control-label">Host 地址</label>
+                                      <div class="col-lg-10">
+                                          <textarea name="hostip" id="" class="form-control" cols="10" rows="5"></textarea>
+										  <span class="help-block">多地址时，一行一个</span>
+                                      </div>
+                                  </div>
+                                  
+                                  <div class="form-group">
+                                      <div class="col-lg-offset-2 col-lg-10">
+                                          <button type="submit" class="btn btn-success">Save</button>
+                                          <button type="button" class="btn btn-default">Cancel</button>
+                                      </div>
+                                  </div>
+                              </form>
+                          </div>
+                      </section>
+                      <section>
+                          <div class="panel panel-primary">
+                              <div class="panel-heading"> 密码重置</div>
+                              <div class="panel-body">
+							  {% if suc_msg %}
+							  <div class="alert alert-success alert-block fade in">
+                                  <button data-dismiss="alert" class="close close-sm" type="button">
+                                      <i class="icon-remove"></i>
+                                  </button>
+                                  <h4>
+                                      <i class="icon-ok-sign"></i>
+                                      Success!
+                                  </h4>
+                                  <p>{{ suc_msg }}</p>
+                              </div>
+							  {% endif %}
+                              {% if err_msg %}
+                              <div class="alert alert-warning fade in">
+                                  <button data-dismiss="alert" class="close close-sm" type="button">
+                                      <i class="icon-remove"></i>
+                                  </button>
+                                  <strong>Warning!</strong> {{ err_msg }}
+                              </div>
+                              {% endif %}
+                                  <form class="form-horizontal" role="form" action="{% url 'passwd' %}" method="POST">
+                                      {% csrf_token %}
+                                      <div class="form-group">
+                                          <label  class="col-lg-2 control-label">旧密码</label>
+                                          <div class="col-lg-6">
+                                              <input type="password" class="form-control" id="c-pwd" placeholder="123456" name="passwd">
+                                          </div>
+                                      </div>
+                                      <div class="form-group">
+                                          <label  class="col-lg-2 control-label">新密码</label>
+                                          <div class="col-lg-6">
+                                              <input type="password" class="form-control" id="n-pwd" placeholder="123456" name="newpasswd">
+                                          </div>
+                                      </div>
+                                      <div class="form-group">
+                                          <label  class="col-lg-2 control-label">重复新密码</label>
+                                          <div class="col-lg-6">
+                                              <input type="password" class="form-control" id="rt-pwd" placeholder="123456" name="newpasswd2">
+                                          </div>
+                                      </div>
+
+                                      
+
+                                      <div class="form-group">
+                                          <div class="col-lg-offset-2 col-lg-10">
+                                              <button type="submit" class="btn btn-info">Save</button>
+                                              <button type="button" class="btn btn-default">Cancel</button>
+                                          </div>
+                                      </div>
+                                  </form>
+                              </div>
+                          </div>
+                      </section>
+                  </aside>
+              </div>
+
+              <!-- page end-->
+          </section>
+      </section>
+      <!--main content end-->
+  </section>
+
+    <!-- js placed at the end of the document so the pages load faster -->
+    <script src="{% static 'js/jquery.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/jquery.scrollTo.min.js' %}"></script>
+    <script src="{% static 'js/jquery.nicescroll.js' %}" type="text/javascript"></script>
+    <script src="{% static 'assets/jquery-knob/js/jquery.knob.js' %}"></script>
+
+    <!--common script for all pages-->
+    <script src="{% static 'js/common-scripts.js' %}"></script>
+	<script type=text/javascript>
+	$('#begin_btn').on('click', function() {
+				window.location.href="{% url 'comshow' %}?comshow=yes";
+			});
+	$('#end_btn').on('click', function() {
+				window.location.href="{% url 'comshow' %}?comshow=no";
+			});
+	</script>
+
+  </body>
+</html>
