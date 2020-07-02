@@ -13,7 +13,7 @@
 ```
 {
 	"options": {
-		"config_plugin":"filesystem",
+	"config_plugin":"filesystem",
         "logger_plugin":"filesystem",
         "logger_path":"/var/log/osquery",
         "disable_logging":"false",
@@ -21,8 +21,8 @@
         "verbose":"false",
         "pidfile":"/var/osquery/osquery.pidfile",
         "enable_syslog": "true",
-		"worker_threads":"5",
-		"host_identifier":"hostname",
+	"worker_threads":"5",
+	"host_identifier":"hostname",
         "disable_events":"false",
         "disable_audit":"false",
         "audit_allow_config":"true",
